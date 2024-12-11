@@ -29,6 +29,12 @@
             margin-bottom: 20px;
             color: red;
         }
+        .correct {
+            background-color: #d4edda;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+        }
     </style>
 </head>
 <body>
@@ -102,14 +108,25 @@
             let score = 0;
 
             questions.forEach((q, index) => {
+                const questionDiv = document.querySelectorAll(".question")[index];
                 const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
-                if (selectedOption && selectedOption.value === q.answer) {
-                    score++;
+
+                if (selectedOption) {
+                    if (selectedOption.value === q.answer) {
+                        score++;
+                        questionDiv.classList.add("correct");
+                    } else {
+                        questionDiv.classList.add("incorrect");
+                    }
+                } else {
+                    questionDiv.classList.add("incorrect");
                 }
             });
 
             const resultDiv = document.getElementById("result");
             resultDiv.textContent = `Your score is ${score} out of ${questions.length}.`;
+
+            clearInterval(timerInterval); // Stop the timer
         }
 
         // Timer functionality
