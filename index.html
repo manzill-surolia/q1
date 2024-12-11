@@ -33,7 +33,7 @@
 </head>
 <body>
     <h1>Best of Luck Yatharth!</h1>
-    <p>Answer the following 30 questions. Select the correct preposition for each sentence. You have 10 minutes.</p>
+    <p>Answer the following 30 questions. Select the correct prepositions for each sentence. You have 10 minutes.</p>
 
     <div id="timer">Time left: 10:00</div>
 
@@ -48,36 +48,81 @@
 
     <script>
         const questions = [
-            { question: "The book is placed ___ the table and ___ the vase for easy access.", options: ["on", "under", "beside", "between"], answer: "on" },
-            { question: "The keys are ___ the drawer and not ___ the table.", options: ["inside", "outside", "on", "over"], answer: "inside" },
-            { question: "The cat jumped ___ the wall and hid ___ the bushes.", options: ["over", "under", "onto", "in"], answer: "over" },
-            { question: "We walked ___ the park and then ___ the bridge to reach home.", options: ["through", "over", "along", "across"], answer: "through" },
-            { question: "She will arrive ___ noon and stay ___ dinner.", options: ["before", "after", "at", "by"], answer: "at" },
-            { question: "He looked ___ the window and saw children playing ___ the garden.", options: ["out", "in", "at", "from"], answer: "out" },
-            { question: "The meeting is scheduled ___ 3 PM ___ the conference room.", options: ["at", "in", "on", "by"], answer: "at" },
-            { question: "The ball rolled ___ the table and stopped ___ the chair.", options: ["under", "beside", "on", "against"], answer: "under" },
-            { question: "He placed the painting ___ the fireplace and the clock ___ the wall.", options: ["above", "on", "beside", "near"], answer: "above" },
-            { question: "She walked ___ the riverbank and then sat ___ the tree to rest.", options: ["along", "under", "by", "near"], answer: "along" },
-            { question: "The gifts were distributed ___ the children ___ the party.", options: ["among", "at", "in", "to"], answer: "among" },
-            { question: "He parked the car ___ the tree to keep it ___ the sun.", options: ["under", "out of", "near", "beside"], answer: "under" },
-            { question: "The train is heading ___ the city and will stop ___ three stations.", options: ["towards", "at", "through", "along"], answer: "towards" },
-            { question: "She walked ___ the building and entered ___ the main gate.", options: ["around", "through", "inside", "into"], answer: "into" },
-            { question: "The file is kept ___ the desk, right ___ the computer.", options: ["on", "beside", "in", "under"], answer: "on" },
-            { question: "They moved ___ the mountain trail and camped ___ the valley.", options: ["along", "in", "below", "beside"], answer: "along" },
-            { question: "The player kicked the ball ___ the goal and it went ___ the net.", options: ["towards", "into", "across", "through"], answer: "into" },
-            { question: "The path runs ___ the lake and continues ___ the forest.", options: ["around", "through", "beside", "near"], answer: "around" },
-            { question: "The picture is hung ___ the sofa and ___ the window.", options: ["above", "beside", "near", "on"], answer: "above" },
-            { question: "The car stopped ___ the signal and waited ___ it turned green.", options: ["at", "until", "before", "after"], answer: "at" },
-            { question: "The kids hid ___ the door and jumped ___ the surprise.", options: ["behind", "out for", "onto", "inside"], answer: "behind" },
-            { question: "The papers are scattered ___ the floor and ___ the desk.", options: ["on", "under", "near", "beside"], answer: "on" },
-            { question: "He is sitting ___ the chair and leaning ___ the wall.", options: ["on", "against", "beside", "under"], answer: "on" },
-            { question: "The book fell ___ the table and landed ___ the floor.", options: ["off", "on", "under", "beside"], answer: "off" },
-            { question: "We will meet ___ lunch and then go ___ the market together.", options: ["after", "to", "at", "by"], answer: "after" },
-            { question: "He stood ___ the podium and spoke ___ the audience.", options: ["at", "to", "beside", "in"], answer: "at" },
-            { question: "The jacket is kept ___ the cupboard and not ___ the bed.", options: ["inside", "on", "below", "under"], answer: "inside" },
-            { question: "She sat ___ her friend and talked ___ the movie.", options: ["beside", "about", "near", "to"], answer: "beside" },
-            { question: "The bridge stretches ___ the river and connects two towns ___ each other.", options: ["across", "to", "on", "beside"], answer: "across" },
-            { question: "He glanced ___ the clock and realized he was ___ time.", options: ["at", "on", "out of", "before"], answer: "at" }
+            { 
+                question: "The book is placed ___ the table and ___ the vase for easy access.", 
+                options: ["on, beside", "under, between", "beside, under", "on, between"], 
+                answer: "on, beside" 
+            },
+            { 
+                question: "The keys are ___ the drawer and not ___ the table.", 
+                options: ["inside, on", "outside, over", "on, under", "inside, outside"], 
+                answer: "inside, on" 
+            },
+            { 
+                question: "The cat jumped ___ the wall and hid ___ the bushes.", 
+                options: ["over, in", "under, over", "onto, beside", "in, under"], 
+                answer: "over, in" 
+            },
+            { 
+                question: "We walked ___ the park and then ___ the bridge to reach home.", 
+                options: ["through, across", "along, under", "across, beside", "through, along"], 
+                answer: "through, across" 
+            },
+            { 
+                question: "She will arrive ___ noon and stay ___ dinner.", 
+                options: ["at, for", "by, after", "at, after", "before, for"], 
+                answer: "at, for" 
+            },
+            { 
+                question: "He looked ___ the window and saw children playing ___ the garden.", 
+                options: ["out, in", "through, over", "in, under", "out, on"], 
+                answer: "out, in" 
+            },
+            { 
+                question: "The meeting is scheduled ___ 3 PM ___ the conference room.", 
+                options: ["at, in", "by, on", "at, on", "in, by"], 
+                answer: "at, in" 
+            },
+            { 
+                question: "The ball rolled ___ the table and stopped ___ the chair.", 
+                options: ["under, beside", "on, against", "beneath, under", "under, against"], 
+                answer: "under, beside" 
+            },
+            { 
+                question: "He placed the painting ___ the fireplace and the clock ___ the wall.", 
+                options: ["above, on", "on, beside", "beside, near", "above, near"], 
+                answer: "above, on" 
+            },
+            { 
+                question: "She walked ___ the riverbank and then sat ___ the tree to rest.", 
+                options: ["along, under", "by, near", "near, along", "under, by"], 
+                answer: "along, under" 
+            },
+            { 
+                question: "The gifts were distributed ___ the children ___ the party.", 
+                options: ["among, at", "at, to", "in, among", "among, in"], 
+                answer: "among, at" 
+            },
+            { 
+                question: "He parked the car ___ the tree to keep it ___ the sun.", 
+                options: ["under, out of", "beside, near", "below, on", "under, inside"], 
+                answer: "under, out of" 
+            },
+            { 
+                question: "The train is heading ___ the city and will stop ___ three stations.", 
+                options: ["towards, at", "into, under", "around, by", "towards, across"], 
+                answer: "towards, at" 
+            },
+            { 
+                question: "She walked ___ the building and entered ___ the main gate.", 
+                options: ["around, into", "through, onto", "along, across", "into, around"], 
+                answer: "around, into" 
+            },
+            { 
+                question: "The file is kept ___ the desk, right ___ the computer.", 
+                options: ["on, beside", "in, under", "beside, near", "above, beside"], 
+                answer: "on, beside" 
+            }
         ];
 
         const questionsContainer = document.getElementById("questions-container");
