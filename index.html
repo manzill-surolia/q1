@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preposition Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        .question p {
+            font-weight: bold;
+        }
+        .submit-button {
+            margin-top: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Preposition Test</h1>
+    <p>Answer the following 30 questions. Select the correct preposition for each sentence.</p>
+
+    <form id="preposition-test">
+        <div id="questions-container">
+            <!-- Questions will be injected here by JavaScript -->
+        </div>
+        <button type="button" class="submit-button" onclick="calculateScore()">Submit Test</button>
+    </form>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        const questions = [
+            { question: "She is fond ___ painting.", options: ["of", "to", "with", "on"], answer: "of" },
+            { question: "The cat is hiding ___ the table.", options: ["under", "above", "in", "on"], answer: "under" },
+            { question: "He is angry ___ his brother.", options: ["at", "on", "to", "with"], answer: "with" },
+            { question: "We will meet ___ Monday.", options: ["on", "at", "in", "by"], answer: "on" },
+            { question: "I was born ___ 1990.", options: ["in", "on", "at", "by"], answer: "in" },
+            { question: "She is good ___ dancing.", options: ["at", "in", "with", "on"], answer: "at" },
+            { question: "The book is lying ___ the table.", options: ["on", "in", "under", "over"], answer: "on" },
+            { question: "He is interested ___ science.", options: ["in", "on", "to", "with"], answer: "in" },
+            { question: "The train is arriving ___ the station.", options: ["at", "on", "to", "in"], answer: "at" },
+            { question: "They are traveling ___ bus.", options: ["by", "on", "in", "with"], answer: "by" },
+            { question: "He will return ___ an hour.", options: ["in", "on", "at", "by"], answer: "in" },
+            { question: "She is working ___ a new project.", options: ["on", "in", "at", "to"], answer: "on" },
+            { question: "The plane flew ___ the clouds.", options: ["above", "under", "over", "in"], answer: "above" },
+            { question: "He is afraid ___ the dark.", options: ["of", "with", "to", "in"], answer: "of" },
+            { question: "The children are playing ___ the park.", options: ["in", "on", "at", "by"], answer: "in" },
+            { question: "The house is built ___ bricks.", options: ["of", "from", "with", "by"], answer: "of" },
+            { question: "She lives ___ her parents.", options: ["with", "by", "on", "at"], answer: "with" },
+            { question: "The cup is made ___ glass.", options: ["of", "by", "from", "in"], answer: "of" },
+            { question: "The river flows ___ the bridge.", options: ["under", "above", "on", "to"], answer: "under" },
+            { question: "He is famous ___ his paintings.", options: ["for", "in", "with", "by"], answer: "for" },
+            { question: "She is responsible ___ the team.", options: ["for", "to", "with", "by"], answer: "for" },
+            { question: "The car stopped ___ the signal.", options: ["at", "on", "in", "by"], answer: "at" },
+            { question: "He jumped ___ the wall.", options: ["over", "on", "to", "by"], answer: "over" },
+            { question: "The meeting will be held ___ the office.", options: ["in", "on", "at", "by"], answer: "in" },
+            { question: "She is ___ a vacation.", options: ["on", "in", "at", "by"], answer: "on" },
+            { question: "The movie starts ___ 7 PM.", options: ["at", "on", "in", "by"], answer: "at" },
+            { question: "The dog is sitting ___ the door.", options: ["by", "at", "in", "on"], answer: "by" },
+            { question: "He walked ___ the street.", options: ["along", "on", "by", "to"], answer: "along" },
+            { question: "The letter is ___ the table.", options: ["on", "in", "at", "by"], answer: "on" },
+            { question: "He is standing ___ the bus stop.", options: ["at", "on", "by", "in"], answer: "at" }
+        ];
+
+        const questionsContainer = document.getElementById("questions-container");
+
+        // Generate the questions dynamically
+        questions.forEach((q, index) => {
+            const questionDiv = document.createElement("div");
+            questionDiv.classList.add("question");
+
+            const questionText = document.createElement("p");
+            questionText.textContent = `${index + 1}. ${q.question}`;
+
+            questionDiv.appendChild(questionText);
+
+            q.options.forEach(option => {
+                const label = document.createElement("label");
+                label.innerHTML = `
+                    <input type="radio" name="question${index}" value="${option}"> ${option}
+                `;
+                questionDiv.appendChild(label);
+            });
+
+            questionsContainer.appendChild(questionDiv);
+        });
+
+        function calculateScore() {
+            let score = 0;
+
+            questions.forEach((q, index) => {
+                const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                if (selectedOption && selectedOption.value === q.answer) {
+                    score++;
+                }
+            });
+
+            const resultDiv = document.getElementById("result");
+            resultDiv.textContent = `Your score is ${score} out of ${questions.length}.`;
+        }
+    </script>
+</body>
+</html>
