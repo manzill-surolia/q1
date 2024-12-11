@@ -35,11 +35,15 @@
         .incorrect {
             background-color: #f8d7da;
         }
+        .right-answer {
+            font-style: italic;
+            color: blue;
+        }
     </style>
 </head>
 <body>
     <h1>Best of Luck Yatharth!</h1>
-    <p>Answer the following 30 questions. Select the correct prepositions for each sentence. You have 10 minutes.</p>
+    <p>Answer the following 25 questions. Select the correct prepositions for each sentence. You have 10 minutes.</p>
 
     <div id="timer">Time left: 10:00</div>
 
@@ -111,6 +115,12 @@
                 questionDiv.appendChild(label);
             });
 
+            const rightAnswerText = document.createElement("p");
+            rightAnswerText.textContent = `Correct Answer: ${q.answer}`;
+            rightAnswerText.classList.add("right-answer");
+            rightAnswerText.style.display = "none";
+            questionDiv.appendChild(rightAnswerText);
+
             questionsContainer.appendChild(questionDiv);
         });
 
@@ -120,6 +130,8 @@
             questions.forEach((q, index) => {
                 const questionDiv = document.querySelectorAll(".question")[index];
                 const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                const rightAnswer = questionDiv.querySelector(".right-answer");
+                rightAnswer.style.display = "block";
 
                 if (selectedOption) {
                     if (selectedOption.value === q.answer) {
