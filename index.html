@@ -53,6 +53,13 @@
     <div class="result" id="result"></div>
 
     <script>
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
         const questions = [
             { question: "The book is placed ___ the table and ___ the vase for easy access.", options: ["on, beside", "under, between", "beside, under", "on, between"], answer: "on, beside" },
             { question: "The keys are ___ the drawer and not ___ the table.", options: ["inside, on", "outside, over", "on, under", "inside, outside"], answer: "inside, on" },
@@ -80,6 +87,9 @@
             { question: "The bridge stretches ___ the river and connects two towns ___ each other.", options: ["across, to", "along, between", "towards, beside", "to, near"], answer: "across, to" },
             { question: "He glanced ___ the clock and realized he was ___ time.", options: ["at, on", "before, after", "on, over", "at, out of"], answer: "at, out of" },
         ];
+
+        // Shuffle options for each question
+        questions.forEach(q => shuffleArray(q.options));
 
         const questionsContainer = document.getElementById("questions-container");
 
