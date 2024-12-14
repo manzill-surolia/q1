@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 7 Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .timer {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #ff0000;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chapter 7: Motion and Measurement of Distances</h1>
+        <div class="timer">Time Left: <span id="timer">10:00</span></div>
+        <form id="quizForm">
+            <!-- Questions start here -->
+
+            <div class="question">
+                <p>1. What is motion?</p>
+                <input type="radio" name="q1" value="a"> a) The act of remaining at rest<br>
+                <input type="radio" name="q1" value="b"> b) The process of changing position with respect to a reference point<br>
+                <input type="radio" name="q1" value="c"> c) The process of measuring distance<br>
+                <input type="radio" name="q1" value="d"> d) The measurement of weight
+            </div>
+
+            <div class="question">
+                <p>2. What is the standard unit of length in the International System of Units (SI)?</p>
+                <input type="radio" name="q2" value="a"> a) Kilometer<br>
+                <input type="radio" name="q2" value="b"> b) Meter<br>
+                <input type="radio" name="q2" value="c"> c) Centimeter<br>
+                <input type="radio" name="q2" value="d"> d) Inch
+            </div>
+
+            <div class="question">
+                <p>3. What was the primary mode of transport in ancient times?</p>
+                <input type="radio" name="q3" value="a"> a) Cars<br>
+                <input type="radio" name="q3" value="b"> b) Trains<br>
+                <input type="radio" name="q3" value="c"> c) Animals<br>
+                <input type="radio" name="q3" value="d"> d) Bicycles
+            </div>
+
+            <div class="question">
+                <p>4. Which of the following is not a unit of measurement for length?</p>
+                <input type="radio" name="q4" value="a"> a) Meter<br>
+                <input type="radio" name="q4" value="b"> b) Centimeter<br>
+                <input type="radio" name="q4" value="c"> c) Liter<br>
+                <input type="radio" name="q4" value="d"> d) Millimeter
+            </div>
+
+            <div class="question">
+                <p>5. Why is there a need for standard units of measurement?</p>
+                <input type="radio" name="q5" value="a"> a) To make measurements easy to perform<br>
+                <input type="radio" name="q5" value="b"> b) To ensure accuracy and uniformity in measurements<br>
+                <input type="radio" name="q5" value="c"> c) To allow the use of traditional methods<br>
+                <input type="radio" name="q5" value="d"> d) To measure different physical properties
+            </div>
+
+            <div class="question">
+                <p>6. What is the length of one kilometer in meters?</p>
+                <input type="radio" name="q6" value="a"> a) 100 meters<br>
+                <input type="radio" name="q6" value="b"> b) 10,000 meters<br>
+                <input type="radio" name="q6" value="c"> c) 1,000 meters<br>
+                <input type="radio" name="q6" value="d"> d) 100,000 meters
+            </div>
+
+            <div class="question">
+                <p>7. The process of determining how much something measures is called?</p>
+                <input type="radio" name="q7" value="a"> a) Transportation<br>
+                <input type="radio" name="q7" value="b"> b) Measurement<br>
+                <input type="radio" name="q7" value="c"> c) Calculation<br>
+                <input type="radio" name="q7" value="d"> d) Length determination
+            </div>
+
+            <div class="question">
+                <p>8. The device commonly used to measure small lengths is a:</p>
+                <input type="radio" name="q8" value="a"> a) Meter scale<br>
+                <input type="radio" name="q8" value="b"> b) Vernier caliper<br>
+                <input type="radio" name="q8" value="c"> c) Measuring tape<br>
+                <input type="radio" name="q8" value="d"> d) Scale
+            </div>
+
+            <div class="question">
+                <p>9. Which of these is not a source of error in measurement?</p>
+                <input type="radio" name="q9" value="a"> a) Wrong placement of the scale<br>
+                <input type="radio" name="q9" value="b"> b) Poor eyesight<br>
+                <input type="radio" name="q9" value="c"> c) Environmental factors<br>
+                <input type="radio" name="q9" value="d"> d) Use of standard units
+            </div>
+
+            <div class="question">
+                <p>10. What is 1 millimeter equal to in meters?</p>
+                <input type="radio" name="q10" value="a"> a) 0.1 meters<br>
+                <input type="radio" name="q10" value="b"> b) 0.01 meters<br>
+                <input type="radio" name="q10" value="c"> c) 0.001 meters<br>
+                <input type="radio" name="q10" value="d"> d) 10 meters
+            </div>
+
+            <button type="button" onclick="submitQuiz()">Submit</button>
+        </form>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        // Timer functionality
+        let timeLeft = 600; // 10 minutes in seconds
+        const timerElement = document.getElementById('timer');
+        const timerInterval = setInterval(() => {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            timeLeft--;
+            if (timeLeft < 0) {
+                clearInterval(timerInterval);
+                submitQuiz();
+            }
+        }, 1000);
+
+        // Correct answers
+        const correctAnswers = {
+            q1: 'b',
+            q2: 'b',
+            q3: 'c',
+            q4: 'c',
+            q5: 'b',
+            q6: 'c',
+            q7: 'b',
+            q8: 'b',
+            q9: 'd',
+            q10: 'c'
+        };
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            const form = document.getElementById('quizForm');
+            const formData = new FormData(form);
+            let score = 0;
+            let totalQuestions = Object.keys(correctAnswers).length;
+
+            for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
+                const userAnswer = formData.get(question);
+                const questionElement = form.querySelector(`[name="${question}"]`).closest('.question');
+                if (userAnswer === correctAnswer) {
+                    score++;
+                    questionElement.classList.add('correct');
+                } else {
+                    questionElement.classList.add('incorrect');
+                }
+            }
+
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = `You scored ${score} out of ${totalQuestions}`;
+        }
+    </script>
+</body>
+</html>
