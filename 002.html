@@ -53,6 +53,12 @@
             text-align: center;
             font-weight: bold;
         }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
     </style>
     <script>
         let timeLeft = 300; // 5 minutes in seconds
@@ -66,7 +72,7 @@
 
                 if (timeLeft < 0) {
                     clearInterval(interval);
-                    document.getElementById('quizForm').submit();
+                    checkAnswers();
                 }
             }, 1000);
         }
@@ -88,14 +94,22 @@
             let score = 0;
             const form = document.getElementById('quizForm');
             const formData = new FormData(form);
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = ''; // Clear previous results
 
+            // Check answers and display results
             for (let [key, value] of formData.entries()) {
+                const questionResult = document.createElement('div');
                 if (correctAnswers[key] === value) {
                     score++;
+                    questionResult.innerHTML = `Question ${key.slice(1)}: <span class="correct">Correct</span>`;
+                } else {
+                    questionResult.innerHTML = `Question ${key.slice(1)}: <span class="incorrect">Incorrect</span> (Correct Answer: ${correctAnswers[key]})`;
                 }
+                resultDiv.appendChild(questionResult);
             }
 
-            document.getElementById('result').textContent = `Your Score: ${score}/10`;
+            resultDiv.innerHTML += `<p>Your Score: ${score}/10</p>`;
         }
     </script>
 </head>
