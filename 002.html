@@ -6,7 +6,6 @@
     <title>The Living Organisms and Their Surroundings - Timed Quiz</title>
     <link rel="stylesheet" href="chapter7-style.css">
     <style>
-        /* Inline CSS in case chapter7-style.css is not available */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -38,6 +37,14 @@
             border: 1px solid #dee2e6;
             border-radius: 5px;
         }
+        .question.correct {
+            border-color: green;
+            background-color: #d4edda;
+        }
+        .question.incorrect {
+            border-color: red;
+            background-color: #f8d7da;
+        }
         .options {
             margin-top: 10px;
         }
@@ -62,12 +69,6 @@
             margin-top: 20px;
             text-align: center;
             font-weight: bold;
-        }
-        .correct {
-            color: green;
-        }
-        .incorrect {
-            color: red;
         }
     </style>
     <script>
@@ -98,7 +99,12 @@
                 q7: 'a',
                 q8: 'c',
                 q9: 'b',
-                q10: 'a'
+                q10: 'a',
+                q11: 'b',
+                q12: 'd',
+                q13: 'b',
+                q14: 'b',
+                q15: 'a'
             };
 
             let score = 0;
@@ -108,18 +114,19 @@
             resultDiv.innerHTML = ''; // Clear previous results
 
             // Check answers and display results
-            for (let [key, value] of formData.entries()) {
-                const questionResult = document.createElement('div');
-                if (correctAnswers[key] === value) {
+            const questions = document.querySelectorAll('.question');
+            questions.forEach((question, index) => {
+                const questionNumber = `q${index + 1}`;
+                const selectedAnswer = formData.get(questionNumber);
+                if (correctAnswers[questionNumber] === selectedAnswer) {
+                    question.classList.add('correct');
                     score++;
-                    questionResult.innerHTML = `Question ${key.slice(1)}: <span class="correct">Correct</span>`;
                 } else {
-                    questionResult.innerHTML = `Question ${key.slice(1)}: <span class="incorrect">Incorrect</span> (Correct Answer: ${correctAnswers[key]})`;
+                    question.classList.add('incorrect');
                 }
-                resultDiv.appendChild(questionResult);
-            }
+            });
 
-            resultDiv.innerHTML += `<p>Your Score: ${score}/10</p>`;
+            resultDiv.innerHTML = `<p>Your Score: ${score}/15</p>`;
         }
     </script>
 </head>
@@ -180,6 +187,87 @@
                     <label><input type="radio" name="q6" value="b"> (b) Camel</label>
                     <label><input type="radio" name="q6" value="c"> (c) Fish</label>
                     <label><input type="radio" name="q6" value="d"> (d) Cactus</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>7. What are components of a habitat called?</p>
+                <div class="options">
+                    <label><input type="radio" name="q7" value="a"> (a) Biotic and abiotic</label>
+                    <label><input type="radio" name="q7" value="b"> (b) Organic and inorganic</label>
+                    <label><input type="radio" name="q7" value="c"> (c) Living and dead</label>
+                    <label><input type="radio" name="q7" value="d"> (d) Static and dynamic</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>8. What do earthworms use for movement?</p>
+                <div class="options">
+                    <label><input type="radio" name="q8" value="a"> (a) Legs</label>
+                    <label><input type="radio" name="q8" value="b"> (b) Wings</label>
+                    <label><input type="radio" name="q8" value="c"> (c) Body muscles</label>
+                    <label><input type="radio" name="q8" value="d"> (d) Fins</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>9. Which characteristic distinguishes living organisms from non-living ones?</p>
+                <div class="options">
+                    <label><input type="radio" name="q9" value="a"> (a) Size</label>
+                    <label><input type="radio" name="q9" value="b"> (b) Growth</label>
+                    <label><input type="radio" name="q9" value="c"> (c) Shape</label>
+                    <label><input type="radio" name="q9" value="d"> (d) Color</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>10. Which type of habitat would you find a camel in?</p>
+                <div class="options">
+                    <label><input type="radio" name="q10" value="a"> (a) Desert</label>
+                    <label><input type="radio" name="q10" value="b"> (b) Forest</label>
+                    <label><input type="radio" name="q10" value="c"> (c) Ocean</label>
+                    <label><input type="radio" name="q10" value="d"> (d) Mountain</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>11. What type of plant structure helps aquatic plants float?</p>
+                <div class="options">
+                    <label><input type="radio" name="q11" value="a"> (a) Broad roots</label>
+                    <label><input type="radio" name="q11" value="b"> (b) Spongy stems</label>
+                    <label><input type="radio" name="q11" value="c"> (c) Needles</label>
+                    <label><input type="radio" name="q11" value="d"> (d) Thick bark</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>12. What do animals in forests use for shelter?</p>
+                <div class="options">
+                    <label><input type="radio" name="q12" value="a"> (a) Rocks</label>
+                    <label><input type="radio" name="q12" value="b"> (b) Burrows</label>
+                    <label><input type="radio" name="q12" value="c"> (c) Trees</label>
+                    <label><input type="radio" name="q12" value="d"> (d) All of the above</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>13. Which of the following is a characteristic of living organisms?</p>
+                <div class="options">
+                    <label><input type="radio" name="q13" value="a"> (a) Inertia</label>
+                    <label><input type="radio" name="q13" value="b"> (b) Reproduction</label>
+                    <label><input type="radio" name="q13" value="c"> (c) Decay</label>
+                    <label><input type="radio" name="q13" value="d"> (d) Flexibility</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>14. What does the term 'biotic' refer to?</p>
+                <div class="options">
+                    <label><input type="radio" name="q14" value="a"> (a) Non-living components</label>
+                    <label><input type="radio" name="q14" value="b"> (b) Living organisms</label>
+                    <label><input type="radio" name="q14" value="c"> (c) Soil</label>
+                    <label><input type="radio" name="q14" value="d"> (d) Climate</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>15. Which of these animals is an example of an organism adapted to burrowing?</p>
+                <div class="options">
+                    <label><input type="radio" name="q15" value="a"> (a) Mole</label>
+                    <label><input type="radio" name="q15" value="b"> (b) Fish</label>
+                    <label><input type="radio" name="q15" value="c"> (c) Camel</label>
+                    <label><input type="radio" name="q15" value="d"> (d) Sparrow</label>
                 </div>
             </div>
             <button type="submit" class="btn-submit">Submit</button>
