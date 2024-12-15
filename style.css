@@ -27,6 +27,17 @@ h1 {
     text-align: center;
     margin: 10px 0;
     color: #ff5722;
+    padding: 10px;
+    background-color: #ffe4e1;
+    border-radius: 5px;
+    display: inline-block;
+    border: 1px solid #ff5722;
+}
+
+#timer::before {
+    content: "Time: ";
+    color: #333;
+    font-weight: normal;
 }
 
 /* Question Styling */
@@ -57,6 +68,35 @@ h1 {
 .incorrect {
     background-color: #f8d7da;
     color: #721c24;
+}
+
+/* Submit Button Styling */
+button {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin: 20px auto;
+    padding: 10px 15px;
+    background-color: #ff5722;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #e64a19;
+    transform: translateY(-2px);
+}
+
+button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
 }
 
 /* Mobile Compatibility */
