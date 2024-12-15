@@ -144,22 +144,20 @@
                     correctOption.parentElement.style.color = 'green';
                 }
 
-                // Highlight incorrect answer in red if applicable
-                if (userAnswer && userAnswer !== correctAnswer) {
+                // Highlight incorrect or unanswered answers
+                if (!userAnswer) {
+                    const answerElement = document.getElementById(`answer-${question}`);
+                    answerElement.textContent = `Correct Answer: ${correctOption.nextSibling.textContent.trim()}`;
+                } else if (userAnswer !== correctAnswer) {
                     const wrongOption = questionElement.querySelector(`input[value="${userAnswer}"]`);
                     if (wrongOption) {
                         wrongOption.parentElement.style.color = 'red';
                     }
-                }
-
-                // Increment score for correct answers
-                if (userAnswer === correctAnswer) {
+                    const answerElement = document.getElementById(`answer-${question}`);
+                    answerElement.textContent = `Correct Answer: ${correctOption.nextSibling.textContent.trim()}`;
+                } else {
                     score++;
                 }
-
-                // Display the correct answer inline
-                const answerElement = document.getElementById(`answer-${question}`);
-                answerElement.textContent = `Correct Answer: ${correctOption.nextSibling.textContent.trim()}`;
             }
 
             // Display the score
