@@ -343,27 +343,33 @@
     q30: 'c'  // Answer for Question 30
         };
 
-        function submitQuiz() {
-            clearInterval(timerInterval);
-            const form = document.getElementById('quizForm');
-            const formData = new FormData(form);
-            let score = 0;
-            let totalQuestions = Object.keys(correctAnswers).length;
+function submitQuiz() {
+    clearInterval(timerInterval);
+    const form = document.getElementById('quizForm');
+    const formData = new FormData(form);
+    let score = 0;
+    let totalQuestions = Object.keys(correctAnswers).length;
 
-            for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
-                const userAnswer = formData.get(question);
-                const questionElement = form.querySelector(`[name="${question}"]`).closest('.question');
-                if (userAnswer === correctAnswer) {
-                    score++;
-                    questionElement.classList.add('correct');
-                } else {
-                    questionElement.classList.add('incorrect');
-                }
-            }
+    for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
+        const userAnswer = formData.get(question);
+        const questionElement = form.querySelector(`[name="${question}"]`).closest('.question');
 
-            const resultElement = document.getElementById('result');
-            resultElement.textContent = `You scored ${score} out of ${totalQuestions}`;
+        // Show correct answer
+        const correctOption = questionElement.querySelector(`input[value="${correctAnswer}"]`);
+        correctOption.parentElement.style.color = 'green'; // Highlight correct option
+
+        if (userAnswer === correctAnswer) {
+            score++;
+            questionElement.classList.add('correct');
+        } else {
+            questionElement.classList.add('incorrect');
         }
+    }
+
+    const resultElement = document.getElementById('result');
+    resultElement.textContent = `You scored ${score} out of ${totalQuestions}`;
+}
+
     </script>
 </body>
 </html>
