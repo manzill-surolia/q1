@@ -1,169 +1,24 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter 7 Quiz</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 0;
-            background-color: #f4f4f9;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-        }
-        .question {
-            margin-bottom: 20px;
-        }
-        .timer {
-            text-align: center;
-            font-size: 18px;
-            margin-bottom: 20px;
-            color: #ff0000;
-        }
-        .result {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 18px;
-        }
-        .correct {
-            color: green;
-        }
-        .incorrect {
-            color: red;
-        }
-        .answer {
-            font-size: 14px;
-            margin-top: 10px;
-            color: green;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Chapter 7: Motion and Measurement of Distances</h1>
-        <div class="timer">Time Left: <span id="timer">10:00</span></div>
-        <form id="quizForm">
-            <div class="question">
-                <p>1. What is motion?</p>
-                <input type="radio" name="q1" value="a"> a) The act of remaining at rest<br>
-                <input type="radio" name="q1" value="b"> b) The process of changing position with respect to a reference point<br>
-                <input type="radio" name="q1" value="c"> c) The process of measuring distance<br>
-                <input type="radio" name="q1" value="d"> d) The measurement of weight
-                <div class="answer" id="answer-q1"></div>
-            </div>
-
-            <div class="question">
-                <p>2. What is the standard unit of length in the International System of Units (SI)?</p>
-                <input type="radio" name="q2" value="a"> a) Kilometer<br>
-                <input type="radio" name="q2" value="b"> b) Meter<br>
-                <input type="radio" name="q2" value="c"> c) Centimeter<br>
-                <input type="radio" name="q2" value="d"> d) Inch
-                <div class="answer" id="answer-q2"></div>
-            </div>
-
-            <div class="question">
-                <p>3. What was the primary mode of transport in ancient times?</p>
-                <input type="radio" name="q3" value="a"> a) Cars<br>
-                <input type="radio" name="q3" value="b"> b) Trains<br>
-                <input type="radio" name="q3" value="c"> c) Animals<br>
-                <input type="radio" name="q3" value="d"> d) Bicycles
-                <div class="answer" id="answer-q3"></div>
-            </div>
-
-            <div class="question">
-                <p>4. Which of the following is not a unit of measurement for length?</p>
-                <input type="radio" name="q4" value="a"> a) Meter<br>
-                <input type="radio" name="q4" value="b"> b) Centimeter<br>
-                <input type="radio" name="q4" value="c"> c) Liter<br>
-                <input type="radio" name="q4" value="d"> d) Millimeter
-                <div class="answer" id="answer-q4"></div>
-            </div>
-
-            <div class="question">
-                <p>5. Why is there a need for standard units of measurement?</p>
-                <input type="radio" name="q5" value="a"> a) To make measurements easy to perform<br>
-                <input type="radio" name="q5" value="b"> b) To ensure accuracy and uniformity in measurements<br>
-                <input type="radio" name="q5" value="c"> c) To allow the use of traditional methods<br>
-                <input type="radio" name="q5" value="d"> d) To measure different physical properties
-                <div class="answer" id="answer-q5"></div>
-            </div>
-
-            <button type="button" onclick="submitQuiz()">Submit</button>
-        </form>
-        <div id="result" class="result"></div>
+    <!-- Question Div -->
+    <div class="question" data-correct="b">
+        <p>1. What is motion?</p>
+        <div class="options">
+            <label><input type="radio" name="q1" value="a"> Remaining at rest</label>
+            <label><input type="radio" name="q1" value="b"> Changing position</label>
+            <label><input type="radio" name="q1" value="c"> Measuring distance</label>
+            <label><input type="radio" name="q1" value="d"> Measuring weight</label>
+        </div>
     </div>
 
-    <script>
-        // Timer functionality
-        let timeLeft = 600; // 10 minutes in seconds
-        const timerElement = document.getElementById('timer');
-        const timerInterval = setInterval(() => {
-            const minutes = Math.floor(timeLeft / 60);
-            const seconds = timeLeft % 60;
-            timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-            timeLeft--;
-            if (timeLeft < 0) {
-                clearInterval(timerInterval);
-                submitQuiz();
-            }
-        }, 1000);
-
-        // Correct answers
-        const correctAnswers = {
-            q1: 'b',
-            q2: 'b',
-            q3: 'c',
-            q4: 'c',
-            q5: 'b'
-        };
-
-        function submitQuiz() {
-            clearInterval(timerInterval);
-            const form = document.getElementById('quizForm');
-            const formData = new FormData(form);
-            let score = 0;
-            let totalQuestions = Object.keys(correctAnswers).length;
-
-            for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
-                const userAnswer = formData.get(question);
-                const questionElement = form.querySelector(`[name="${question}"]`).closest('.question');
-
-                // Highlight the correct answer in green
-                const correctOption = questionElement.querySelector(`input[value="${correctAnswer}"]`);
-                if (correctOption) {
-                    correctOption.parentElement.style.color = 'green';
-                }
-
-                // Highlight incorrect or unanswered answers
-                if (!userAnswer) {
-                    const answerElement = document.getElementById(`answer-${question}`);
-                    answerElement.textContent = `Correct Answer: ${correctOption.nextSibling.textContent.trim()}`;
-                } else if (userAnswer !== correctAnswer) {
-                    const wrongOption = questionElement.querySelector(`input[value="${userAnswer}"]`);
-                    if (wrongOption) {
-                        wrongOption.parentElement.style.color = 'red';
-                    }
-                    const answerElement = document.getElementById(`answer-${question}`);
-                    answerElement.textContent = `Correct Answer: ${correctOption.nextSibling.textContent.trim()}`;
-                } else {
-                    score++;
-                }
-            }
-
-            // Display the score
-            const resultElement = document.getElementById('result');
-            resultElement.innerHTML = `You scored <strong>${score}</strong> out of <strong>${totalQuestions}</strong>.`;
-        }
-    </script>
+    <!-- Submit Button -->
+    <button type="submit" id="submit-btn">Submit</button>
 </body>
-</html>
+
