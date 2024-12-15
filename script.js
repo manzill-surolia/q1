@@ -1,89 +1,61 @@
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
+// Timer
+let timer;
+function startTimer(duration, display) {
+    let remainingTime = duration;
+    timer = setInterval(() => {
+        const minutes = Math.floor(remainingTime / 60);
+        const seconds = remainingTime % 60;
+        display.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+        if (--remainingTime < 0) {
+            clearInterval(timer);
+            alert("Time is up! Submitting your quiz...");
+            submitQuiz();
+        }
+    }, 1000);
 }
 
-const questions = [
-    { question: "The book is placed ___ the table and ___ the vase for easy access.", options: ["on, beside", "under, between", "beside, under", "on, between"], answer: "on, beside" },
-    // Add more questions here...
-];
-
-// Shuffle options for each question
-questions.forEach(q => shuffleArray(q.options));
-
-const questionsContainer = document.getElementById("questions-container");
-
-// Generate the questions dynamically
-questions.forEach((q, index) => {
-    const questionDiv = document.createElement("div");
-    questionDiv.classList.add("question");
-
-    const questionText = document.createElement("p");
-    questionText.textContent = `${index + 1}. ${q.question}`;
-
-    questionDiv.appendChild(questionText);
-
-    q.options.forEach(option => {
-        const label = document.createElement("label");
-        label.innerHTML = `
-            <input type="radio" name="question${index}" value="${option}"> ${option}
-        `;
-        questionDiv.appendChild(label);
-    });
-
-    const rightAnswerText = document.createElement("p");
-    rightAnswerText.textContent = `Correct Answer: ${q.answer}`;
-    rightAnswerText.classList.add("right-answer");
-    rightAnswerText.style.display = "none";
-    questionDiv.appendChild(rightAnswerText);
-
-    questionsContainer.appendChild(questionDiv);
-});
-
-function calculateScore() {
-    let score = 0;
-
-    questions.forEach((q, index) => {
-        const questionDiv = document.querySelectorAll(".question")[index];
-        const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
-        const rightAnswer = questionDiv.querySelector(".right-answer");
-        rightAnswer.style.display = "block";
-
+// Submit Quiz
+function submitQuiz() {
+    clearInterval(timer);
+    const questions = document.querySelectorAll(".question");
+    questions.forEach((q) => {
+        const selectedOption = q.querySelector("input[type='radio']:checked");
+        const correctAnswer = q.dataset.correct; // Correct answer from data attribute
+        
         if (selectedOption) {
-            if (selectedOption.value === q.answer) {
-                score++;
-                questionDiv.classList.add("correct");
+            const selectedValue = selectedOption.value;
+            if (selectedValue === correctAnswer) {
+                selectedOption.parentElement.classList.add("correct");
             } else {
-                questionDiv.classList.add("incorrect");
+                selectedOption.parentElement.classList.add("incorrect");
+                showCorrectAnswer(q, correctAnswer);
             }
         } else {
-            questionDiv.classList.add("incorrect");
+            // Unattempted: Show correct answer
+            showCorrectAnswer(q, correctAnswer);
         }
     });
-
-    const resultDiv = document.getElementById("result");
-    resultDiv.textContent = `Your score is ${score} out of ${questions.length}.`;
-
-    clearInterval(timerInterval); // Stop the timer
+    document.getElementById("submit-btn").disabled = true; // Disable submit button
 }
 
-// Timer functionality
-let timeLeft = 600; // 10 minutes in seconds
-const timerDiv = document.getElementById("timer");
-
-function updateTimer() {
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
-    timerDiv.textContent = `Time left: ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-    timeLeft--;
-
-    if (timeLeft < 0) {
-        clearInterval(timerInterval);
-        alert("Time's up! Submitting your test now.");
-        calculateScore();
-    }
+// Show Correct Answer
+function showCorrectAnswer(question, correctAnswer) {
+    const options = question.querySelectorAll("input[type='radio']");
+    options.forEach((opt) => {
+        if (opt.value === correctAnswer) {
+            opt.parentElement.classList.add("correct");
+        }
+    });
 }
 
-const timerInterval = setInterval(updateTimer, 1000);
+// Event Listener for Form Submit
+document.addEventListener("DOMContentLoaded", () => {
+    const quizForm = document.getElementById("quiz-form");
+    const timerDisplay = document.getElementById("timer");
+    const duration = 5 * 60; // 5 minutes in seconds
+    startTimer(duration, timerDisplay);
+    quizForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevent page reload
+        submitQuiz();
+    });
+});
