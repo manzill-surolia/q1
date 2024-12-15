@@ -58,3 +58,55 @@ h1 {
     background-color: #f8d7da;
     color: #721c24;
 }
+
+/* Mobile Compatibility */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    #timer {
+        font-size: 1.2rem;
+    }
+
+    .question p {
+        font-size: 1rem;
+    }
+
+    .options label {
+        font-size: 0.9rem;
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    #timer {
+        font-size: 1rem;
+    }
+
+    .question p {
+        font-size: 0.9rem;
+    }
+
+    .options label {
+        font-size: 0.8rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+}
