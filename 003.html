@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Motion and Measurement of Distances</title>
+    <title>Chapter 7 Quiz</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -45,11 +45,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Motion and Measurement of Distances</h1>
+        <h1>Chapter 7: Motion and Measurement of Distances</h1>
         <div class="timer">Time Left: <span id="timer">10:00</span></div>
         <form id="quizForm">
-            <!-- Questions start here -->
-
             <div class="question">
                 <p>1. What is motion?</p>
                 <input type="radio" name="q1" value="a"> a) The act of remaining at rest<br>
@@ -129,6 +127,11 @@
                 <input type="radio" name="q10" value="c"> c) 0.001 meters<br>
                 <input type="radio" name="q10" value="d"> d) 10 meters
             </div>
+
+            <button type="button" onclick="submitQuiz()">Submit</button>
+        </form>
+        <div id="result" class="result"></div>
+    </div>
 
             <div class="question">
     <p>11. What term is used to describe objects that do not move?</p>
@@ -344,34 +347,50 @@
     q29: 'b',
     q30: 'b'
         };
-
 function submitQuiz() {
-    clearInterval(timerInterval);
-    const form = document.getElementById('quizForm');
-    const formData = new FormData(form);
-    let score = 0;
-    let totalQuestions = Object.keys(correctAnswers).length;
+            clearInterval(timerInterval);
+            const form = document.getElementById('quizForm');
+            const formData = new FormData(form);
+            let score = 0;
+            let totalQuestions = Object.keys(correctAnswers).length;
 
-    for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
-        const userAnswer = formData.get(question);
-        const questionElement = form.querySelector(`[name="${question}"]`).closest('.question');
+            for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
+                const userAnswer = formData.get(question);
+                const questionElement = form.querySelector(`[name="${question}"]`).closest('.question');
 
-        // Show correct answer
-        const correctOption = questionElement.querySelector(`input[value="${correctAnswer}"]`);
-        correctOption.parentElement.style.color = 'green'; // Highlight correct option
+                // Highlight the correct answer in green
+                const correctOption = questionElement.querySelector(`input[value="${correctAnswer}"]`);
+                correctOption.parentElement.style.color = 'green';
 
-        if (userAnswer === correctAnswer) {
-            score++;
-            questionElement.classList.add('correct');
-        } else {
-            questionElement.classList.add('incorrect');
+                // Highlight incorrect answer in red if applicable
+                if (userAnswer && userAnswer !== correctAnswer) {
+                    const wrongOption = questionElement.querySelector(`input[value="${userAnswer}"]`);
+                    if (wrongOption) {
+                        wrongOption.parentElement.style.color = 'red';
+                    }
+                }
+
+                // Increment score for correct answers
+                if (userAnswer === correctAnswer) {
+                    score++;
+                }
+            }
+
+            // Display the score
+            const resultElement = document.getElementById('result');
+            resultElement.innerHTML = `You scored <strong>${score}</strong> out of <strong>${totalQuestions}</strong>.`;
+
+            // Display correct answers
+            let correctAnswerText = '<h3>Correct Answers:</h3><ul>';
+            for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
+                const questionElement = form.querySelector(`[name="${question}"]`).closest('.question');
+                const questionText = questionElement.querySelector('p').textContent;
+                const correctOptionText = questionElement.querySelector(`input[value="${correctAnswer}"]`).nextSibling.textContent.trim();
+                correctAnswerText += `<li>${questionText} - <strong>${correctOptionText}</strong></li>`;
+            }
+            correctAnswerText += '</ul>';
+            resultElement.innerHTML += correctAnswerText;
         }
-    }
-
-    const resultElement = document.getElementById('result');
-    resultElement.textContent = `You scored ${score} out of ${totalQuestions}`;
-}
-
     </script>
 </body>
 </html>
