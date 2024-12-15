@@ -47,18 +47,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function submitQuiz() {
         clearInterval(timer);
+
         const questions = document.querySelectorAll(".question");
         if (questions.length === 0) {
             console.error("No questions found. Ensure your HTML contains questions with the 'question' class.");
             return;
         }
 
+        let score = 0; // Track the number of correct answers
         questions.forEach((q) => {
             const correctAnswer = q.dataset.correct;
             const selectedOption = q.querySelector("input[type='radio']:checked");
 
             if (selectedOption) {
                 if (selectedOption.value === correctAnswer) {
+                    score++; // Increment score for correct answer
                     selectedOption.parentElement.classList.add("correct");
                 } else {
                     selectedOption.parentElement.classList.add("incorrect");
@@ -70,6 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
+        // Display final score
+        displayScore(score, questions.length);
+
         submitButton.disabled = true; // Disable the submit button after submission
     }
 
@@ -80,5 +86,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 opt.parentElement.classList.add("correct");
             }
         });
+    }
+
+    function displayScore(score, total) {
+        const scoreDisplay = document.createElement("div");
+        scoreDisplay.id = "score-display";
+        scoreDisplay.textContent = `You scored ${score} out of ${total}.`;
+        scoreDisplay.style.fontWeight = "bold"; // Optional styling
+        scoreDisplay.style.margin = "10px 0"; // Optional spacing
+
+        // Add the score display right after the timer
+        const timerDisplay = document.getElementById("timer");
+        if (timerDisplay) {
+            timerDisplay.insertAdjacentElement("afterend", scoreDisplay);
+        } else {
+            document.body.prepend(scoreDisplay); // Fallback if timer is missing
+        }
+
+        // Scroll to the score display
+        scoreDisplay.scrollIntoView({ behavior: "smooth" });
     }
 });
