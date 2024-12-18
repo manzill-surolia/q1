@@ -161,46 +161,137 @@
     <p>The table below shows the marks obtained by a student in four subjects:</p>
     <table border="1" cellspacing="0" cellpadding="5">
         <tr>
-            <th>Subject</th><th>Mathematics</th><th>Science</th><th>English</th><th>Social Science</th>
+            <th>Subject</th>
+            <th>Mathematics</th>
+            <th>Science</th>
+            <th>English</th>
+            <th>Social Science</th>
         </tr>
         <tr>
-            <td>Marks</td><td>80</td><td>70</td><td>60</td><td>50</td>
+            <td>Marks</td>
+            <td>80</td>
+            <td>70</td>
+            <td>60</td>
+            <td>50</td>
         </tr>
     </table>
     <p>Draw a bar graph for the above data. How many more marks did the student score in Mathematics than in Social Science?</p>
     <button onclick="showAnswer('answer3')">Show Answer</button>
-    <div class="answer" id="answer3">
+    <div class="answer" id="answer3" style="display: none;">
         <p><strong>Answer:</strong></p>
         <ul>
-            <li>Marks difference: 80 - 50 = 30</li>
+            <li>Marks in Mathematics: 80</li>
+            <li>Marks in Social Science: 50</li>
+            <li>Difference: 80 - 50 = 30 marks</li>
         </ul>
         <p><strong>Bar Graph:</strong></p>
-        <img src="https://i.imgur.com/OuByPn8.png" alt="Bar Graph for Question 3">
+        <canvas id="question3Chart" width="400" height="300"></canvas>
+        <script>
+            // Bar Graph Data and Configuration for Question 3
+            const ctx3 = document.getElementById('question3Chart').getContext('2d');
+            new Chart(ctx3, {
+                type: 'bar',
+                data: {
+                    labels: ['Mathematics', 'Science', 'English', 'Social Science'],
+                    datasets: [{
+                        label: 'Marks Scored',
+                        data: [80, 70, 60, 50],
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 206, 86, 0.6)',
+                            'rgba(255, 99, 132, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(255, 99, 132, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
     </div>
 </div>
 
-    <!-- Question 4 -->
+
+   <!-- Question 4 -->
 <div class="question">
     <h3>Question 4:</h3>
     <p>The table below shows the number of students traveling by various modes of transport:</p>
     <table border="1" cellspacing="0" cellpadding="5">
         <tr>
-            <th>Mode of Transport</th><th>Bus</th><th>Bicycle</th><th>Car</th><th>Auto-rickshaw</th><th>Walking</th>
+            <th>Mode of Transport</th>
+            <th>Bus</th>
+            <th>Bicycle</th>
+            <th>Car</th>
+            <th>Auto-rickshaw</th>
+            <th>Walking</th>
         </tr>
         <tr>
-            <td>No. of Students</td><td>40</td><td>20</td><td>30</td><td>10</td><td>15</td>
+            <td>No. of Students</td>
+            <td>40</td>
+            <td>20</td>
+            <td>30</td>
+            <td>10</td>
+            <td>15</td>
         </tr>
     </table>
     <p>Draw a bar graph for the above data. Write two observations.</p>
     <button onclick="showAnswer('answer4')">Show Answer</button>
-    <div class="answer" id="answer4">
+    <div class="answer" id="answer4" style="display: none;">
         <p><strong>Answer:</strong></p>
         <ul>
             <li>Most students travel by Bus (40 students).</li>
             <li>Fewest students travel by Auto-rickshaw (10 students).</li>
         </ul>
         <p><strong>Bar Graph:</strong></p>
-        <img src="https://i.imgur.com/Fk7q8xz.png" alt="Bar Graph for Question 4">
+        <canvas id="question4Chart" width="400" height="300"></canvas>
+        <script>
+            // Bar Graph Data and Configuration for Question 4
+            const ctx4 = document.getElementById('question4Chart').getContext('2d');
+            new Chart(ctx4, {
+                type: 'bar',
+                data: {
+                    labels: ['Bus', 'Bicycle', 'Car', 'Auto-rickshaw', 'Walking'],
+                    datasets: [{
+                        label: 'No. of Students',
+                        data: [40, 20, 30, 10, 15],
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 206, 86, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(153, 102, 255, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
     </div>
 </div>
 
@@ -228,27 +319,77 @@
     </div>
 </div>
 
-    <!-- Question 6 -->
+<!-- Question 6 -->
 <div class="question">
     <h3>Question 6:</h3>
     <p>The table below shows the monthly pocket money of students:</p>
     <table border="1" cellspacing="0" cellpadding="5">
         <tr>
-            <th>Pocket Money (₹)</th><th>50</th><th>100</th><th>200</th><th>300</th><th>400</th><th>500</th>
+            <th>Pocket Money (₹)</th>
+            <th>50</th>
+            <th>100</th>
+            <th>200</th>
+            <th>300</th>
+            <th>400</th>
+            <th>500</th>
         </tr>
         <tr>
-            <td>No. of Students</td><td>20</td><td>30</td><td>50</td><td>60</td><td>40</td><td>10</td>
+            <td>No. of Students</td>
+            <td>20</td>
+            <td>30</td>
+            <td>50</td>
+            <td>60</td>
+            <td>40</td>
+            <td>10</td>
         </tr>
     </table>
     <p>Draw a bar graph for the above data. How many students receive ₹300 or more?</p>
     <button onclick="showAnswer('answer6')">Show Answer</button>
-    <div class="answer" id="answer6">
+    <div class="answer" id="answer6" style="display: none;">
         <p><strong>Answer:</strong></p>
         <ul>
             <li>Students receiving ₹300 or more: 60 + 40 + 10 = 110 students.</li>
         </ul>
         <p><strong>Bar Graph:</strong></p>
-        <img src="https://i.imgur.com/FyT5BBN.png" alt=\"Bar Graph for Question 6\">
+        <canvas id="question6Chart" width="400" height="300"></canvas>
+        <script>
+            // Bar Graph Data and Configuration for Question 6
+            const ctx6 = document.getElementById('question6Chart').getContext('2d');
+            new Chart(ctx6, {
+                type: 'bar',
+                data: {
+                    labels: ['₹50', '₹100', '₹200', '₹300', '₹400', '₹500'],
+                    datasets: [{
+                        label: 'No. of Students',
+                        data: [20, 30, 50, 60, 40, 10],
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 206, 86, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(153, 102, 255, 0.6)',
+                            'rgba(255, 159, 64, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
     </div>
 </div>
 
@@ -319,51 +460,147 @@
     </div>
 </div>
 
-    <!-- Question 9 -->
+<!-- Question 9 -->
 <div class="question">
     <h3>Question 9:</h3>
     <p>The table below shows the weekly sales of fruits:</p>
     <table border="1" cellspacing="0" cellpadding="5">
         <tr>
-            <th>Fruit</th><th>Apples</th><th>Oranges</th><th>Bananas</th><th>Grapes</th><th>Mangoes</th>
+            <th>Fruit</th>
+            <th>Apples</th>
+            <th>Oranges</th>
+            <th>Bananas</th>
+            <th>Grapes</th>
+            <th>Mangoes</th>
         </tr>
         <tr>
-            <td>Quantity</td><td>60</td><td>80</td><td>100</td><td>40</td><td>90</td>
+            <td>Quantity</td>
+            <td>60</td>
+            <td>80</td>
+            <td>100</td>
+            <td>40</td>
+            <td>90</td>
         </tr>
     </table>
     <p>Draw a bar graph for the above data. Find the difference in quantity between Bananas and Grapes.</p>
     <button onclick="showAnswer('answer9')">Show Answer</button>
-    <div class="answer" id="answer9">
+    <div class="answer" id="answer9" style="display: none;">
         <p><strong>Answer:</strong></p>
         <ul>
-            <li>Difference: 100 - 40 = 60.</li>
+            <li>Difference between Bananas and Grapes: 100 - 40 = 60.</li>
         </ul>
         <p><strong>Bar Graph:</strong></p>
-        <img src="https://i.imgur.com/Q7kI1fQ.png" alt="Bar Graph for Question 9">
+        <canvas id="question9Chart" width="400" height="300"></canvas>
+        <script>
+            // Bar Graph Data and Configuration for Question 9
+            const ctx9 = document.getElementById('question9Chart').getContext('2d');
+            new Chart(ctx9, {
+                type: 'bar',
+                data: {
+                    labels: ['Apples', 'Oranges', 'Bananas', 'Grapes', 'Mangoes'],
+                    datasets: [{
+                        label: 'Quantity Sold',
+                        data: [60, 80, 100, 40, 90],
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 206, 86, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(153, 102, 255, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
     </div>
 </div>
 
-    <!-- Question 10 -->
+<!-- Question 10 -->
 <div class="question">
     <h3>Question 10:</h3>
     <p>A survey recorded the favorite colors of students in a class. The results are:</p>
     <table border="1" cellspacing="0" cellpadding="5">
         <tr>
-            <th>Color</th><th>Red</th><th>Blue</th><th>Green</th><th>Yellow</th><th>Pink</th><th>White</th>
+            <th>Color</th>
+            <th>Red</th>
+            <th>Blue</th>
+            <th>Green</th>
+            <th>Yellow</th>
+            <th>Pink</th>
+            <th>White</th>
         </tr>
         <tr>
-            <td>No. of Students</td><td>8</td><td>10</td><td>9</td><td>8</td><td>5</td><td>4</td>
+            <td>No. of Students</td>
+            <td>8</td>
+            <td>10</td>
+            <td>9</td>
+            <td>8</td>
+            <td>5</td>
+            <td>4</td>
         </tr>
     </table>
     <p>Draw a bar graph for the above data. Which color is liked by the maximum number of students?</p>
     <button onclick="showAnswer('answer10')">Show Answer</button>
-    <div class="answer" id="answer10">
+    <div class="answer" id="answer10" style="display: none;">
         <p><strong>Answer:</strong></p>
         <ul>
             <li>Most liked color: Blue (10 students).</li>
         </ul>
         <p><strong>Bar Graph:</strong></p>
-        <img src="https://i.imgur.com/ZF8UwDR.png" alt="Bar Graph for Question 10">
+        <canvas id="question10Chart" width="400" height="300"></canvas>
+        <script>
+            // Bar Graph Data and Configuration for Question 10
+            const ctx10 = document.getElementById('question10Chart').getContext('2d');
+            new Chart(ctx10, {
+                type: 'bar',
+                data: {
+                    labels: ['Red', 'Blue', 'Green', 'Yellow', 'Pink', 'White'],
+                    datasets: [{
+                        label: 'No. of Students',
+                        data: [8, 10, 9, 8, 5, 4],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(255, 206, 86, 0.6)',
+                            'rgba(153, 102, 255, 0.6)',
+                            'rgba(201, 203, 207, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(201, 203, 207, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
     </div>
 </div>
 
