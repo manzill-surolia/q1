@@ -46,6 +46,8 @@
             }
         }
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <h1>Data Handling - Exam</h1>
@@ -76,17 +78,54 @@
     </table>
     <p>Draw a bar graph for this data. On which day were the maximum and minimum books borrowed?</p>
     <button onclick="showAnswer('answer1')">Show Answer</button>
-    <div class="answer" id="answer1">
+    <div class="answer" id="answer1" style="display: none;">
         <p><strong>Answer:</strong></p>
         <ul>
             <li>Maximum books were borrowed on Friday (60 books).</li>
             <li>Minimum books were borrowed on Thursday (20 books).</li>
         </ul>
         <p><strong>Bar Graph:</strong></p>
-        <img src="https://via.placeholder.com/400x300?text=Bar+Graph+for+Question+1" alt="Bar Graph for Question 1">
+        <canvas id="question1Chart" width="400" height="300"></canvas>
+        <script>
+            // Bar Graph Data and Configuration
+            const ctx1 = document.getElementById('question1Chart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                    datasets: [{
+                        label: 'Books Borrowed',
+                        data: [40, 30, 50, 20, 60, 45],
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 206, 86, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(153, 102, 255, 0.6)',
+                            'rgba(255, 159, 64, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
     </div>
 </div>
-
 
     <!-- Question 2 -->
     <div class="question">
