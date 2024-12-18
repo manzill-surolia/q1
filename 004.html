@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam - Data Handling</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .answer {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        img {
+            width: 50%;
+            height: auto;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        function showAnswer(id) {
+            var answerDiv = document.getElementById(id);
+            if (answerDiv.style.display === 'none') {
+                answerDiv.style.display = 'block';
+            } else {
+                answerDiv.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Data Handling - Exam</h1>
+
+    <!-- Question 1 -->
+    <div class="question">
+        <h3>Question 1:</h3>
+        <p>The table below shows the number of books borrowed by students from a school library:</p>
+        <table border="1" cellspacing="0" cellpadding="5">
+            <tr>
+                <th>Day</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th>
+            </tr>
+            <tr>
+                <td>Books</td><td>40</td><td>30</td><td>50</td><td>20</td><td>60</td><td>45</td>
+            </tr>
+        </table>
+        <p>Draw a bar graph for this data. On which day were the maximum and minimum books borrowed?</p>
+        <button onclick="showAnswer('answer1')">Show Answer</button>
+        <div class="answer" id="answer1">
+            <p><strong>Answer:</strong></p>
+            <ul>
+                <li>Maximum books were borrowed on Friday (60 books).</li>
+                <li>Minimum books were borrowed on Thursday (20 books).</li>
+            </ul>
+            <p><strong>Bar Graph:</strong></p>
+            <img src="https://i.imgur.com/VJSX9bV.png" alt="Bar Graph for Question 1">
+        </div>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question">
+        <h3>Question 2:</h3>
+        <p>The table below shows the monthly sales of stationery items in a shop:</p>
+        <table border="1" cellspacing="0" cellpadding="5">
+            <tr>
+                <th>Item</th><th>Notebooks</th><th>Pens</th><th>Pencils</th><th>Erasers</th><th>Sharpener</th><th>Rulers</th>
+            </tr>
+            <tr>
+                <td>Units Sold</td><td>50</td><td>40</td><td>30</td><td>20</td><td>15</td><td>10</td>
+            </tr>
+        </table>
+        <p>Draw a pictograph where 1 symbol = 10 units.</p>
+        <button onclick="showAnswer('answer2')">Show Answer</button>
+        <div class="answer" id="answer2">
+            <p><strong>Answer:</strong></p>
+            <p><strong>Pictograph:</strong> (Symbols represent 10 units each)</p>
+            <ul>
+                <li>Notebooks: 💰💰💰💰💰</li>
+                <li>Pens: 💰💰💰💰</li>
+                <li>Pencils: 💰💰💰</li>
+                <li>Erasers: 💰💰</li>
+                <li>Sharpeners: 💰💰</li>
+                <li>Rulers: 💰</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Additional Questions -->
+    <!-- Add more questions here following the same structure -->
+
+    <p><strong>End of Question Paper</strong></p>
+</body>
+</html>
