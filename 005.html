@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decimal Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+        }
+        .question {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+        .answer {
+            display: none;
+            color: green;
+            font-style: italic;
+            margin-left: 20px;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Decimals Questions</h1>
+
+    <div id="questions-container">
+        <!-- Questions -->
+        <div class="question">
+            1. Define what a decimal is and explain how it relates to fractions.
+            <div class="answer">Answer: A decimal is a way to represent fractions where the denominator is 10, 100, 1000, etc. It uses a point to separate whole and fractional parts.</div>
+        </div>
+        <div class="question">
+            2. Convert the following fractions to decimals: \( \frac{3}{10}, \frac{7}{100}, \frac{21}{1000} \).
+            <div class="answer">Answer: 0.3, 0.07, 0.021</div>
+        </div>
+        <div class="question">
+            3. Write 5.4, 0.25, and 13.07 in expanded form.
+            <div class="answer">Answer: 5.4 = 5 + 0.4; 0.25 = 0.2 + 0.05; 13.07 = 10 + 3 + 0.07</div>
+        </div>
+        <div class="question">
+            4. Place these decimals in ascending order: 3.45, 3.405, 3.5, 3.04.
+            <div class="answer">Answer: 3.04, 3.405, 3.45, 3.5</div>
+        </div>
+        <div class="question">
+            5. What is the place value of the digit 7 in 45.726?
+            <div class="answer">Answer: The place value of 7 is 0.7 (tenths place).</div>
+        </div>
+        <!-- Continue for remaining questions -->
+        
+        <div class="question">
+            30. Arrange the following decimals in descending order: 7.77, 7.007, 7.7, 7.77.
+            <div class="answer">Answer: 7.77, 7.77, 7.7, 7.007</div>
+        </div>
+    </div>
+
+    <button onclick="showAnswers()">Display Answers</button>
+
+    <script>
+        function showAnswers() {
+            const answers = document.querySelectorAll('.answer');
+            answers.forEach(answer => {
+                answer.style.display = 'block';
+            });
+        }
+    </script>
+</body>
+</html>
